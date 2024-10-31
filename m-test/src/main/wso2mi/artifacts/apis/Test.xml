@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/test" name="Test" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="GET" uri-template="/doctor/{doctorType}">
+        <inSequence>
+            
+            <log category="INFO" level="simple">
+                <property name="INCOMING #1" value="INCOMING #1" />
+            </log>
+
+            <payloadFactory media-type="json" template-type="default">
+                <format> {"test":"test1"}</format>
+                <args>
+                </args>
+            </payloadFactory>
+
+            <log category="INFO" level="simple">
+                <property name="OUTGOING #2" value="OUTGOING #2" />
+            </log>
+            <respond />
+        </inSequence>
+        <outSequence />
+        <faultSequence />
+    </resource>
+    <resource methods="GET" url-mapping="/salesforce/records">
+        <inSequence>
+            <log category="INFO" level="simple">
+                <property name="INCOMING #1" value="INCOMING #1" />
+            </log>
+
+             <payloadFactory media-type="json" template-type="default">
+                <format> {"test":"test2"}</format>
+                <args>
+                </args>
+            </payloadFactory>
+            
+            <log category="INFO" level="simple">
+                <property name="OUTGOING #2" value="OUTGOING #2" />
+            </log>
+            <respond />
+        </inSequence>
+        <faultSequence>
+			<log category="INFO" level="full" />
+        </faultSequence>
+    </resource>
+</api>

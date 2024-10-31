@@ -1,0 +1,24 @@
+openapi: 3.0.1
+info:
+  title: Test
+  description: API Definition of Test
+  version: 1.0.0
+servers:
+- url: http://localhost:8290/test
+paths:
+  /doctor/{doctorType}:
+    get:
+      parameters:
+      - name: doctorType
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: Default response
+  /salesforce/records:
+    get:
+      responses:
+        default:
+          description: Default response
